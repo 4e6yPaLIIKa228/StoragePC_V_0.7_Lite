@@ -144,3 +144,8 @@ C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\YchetPer
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\YchetPer.csproj.CopyComplete
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\YchetPer.exe
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\YchetPer.pdb
+C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\EdditTitle.g.cs
+C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\EdditTitle.baml
+C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\DeviceACC4.db
+C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\System.ValueTuple.dll
+C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\System.ValueTuple.xml

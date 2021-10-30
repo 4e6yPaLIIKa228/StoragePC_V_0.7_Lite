@@ -14,7 +14,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SQLite;
 using YchetPer.Connection;
+using System.Data.SqlClient;
 using System.Data;
+using System.Drawing;
+using System.IO;
+
 
 
 namespace YchetPer
@@ -48,27 +52,32 @@ namespace YchetPer
                     string query1 = $@"SELECT * FROM Types"; // Типы
                     string query2 = $@"SELECT * FROM Conditions"; // Состояние
                     string query3 = $@"SELECT * FROM NumberKabs"; // Кабинеты
-                    string query4 = $@"SELECT  Devices.Title FROM Devices"; // Названия
+                    //string query4 = $@"SELECT  Devices.Title FROM Devices"; // Названия
+                    string query5 = $@"SELECT * FROM Titles"; // Устройства
                     //----------------------------------------------
                     SQLiteCommand cmd1 = new SQLiteCommand(query1, connection);
                     SQLiteCommand cmd2 = new SQLiteCommand(query2, connection);
                     SQLiteCommand cmd3 = new SQLiteCommand(query3, connection);
-                    SQLiteCommand cmd4 = new SQLiteCommand(query4, connection);
+                    //SQLiteCommand cmd4 = new SQLiteCommand(query4, connection);
+                    SQLiteCommand cmd5 = new SQLiteCommand(query5, connection);
                     //----------------------------------------------
                     SQLiteDataAdapter SDA1 = new SQLiteDataAdapter(cmd1);
                     SQLiteDataAdapter SDA2 = new SQLiteDataAdapter(cmd2);
                     SQLiteDataAdapter SDA3 = new SQLiteDataAdapter(cmd3);
-                    SQLiteDataAdapter SDA4 = new SQLiteDataAdapter(cmd4);
+                    //SQLiteDataAdapter SDA4 = new SQLiteDataAdapter(cmd4);
+                    SQLiteDataAdapter SDA5 = new SQLiteDataAdapter(cmd5);
                     //----------------------------------------------
                     DataTable dt1 = new DataTable("Types");
                     DataTable dt2 = new DataTable("Conditions");
                     DataTable dt3 = new DataTable("NumberKabs");
                     DataTable dt4 = new DataTable("Devices");
+                    DataTable dt5 = new DataTable("Titles");
                     //----------------------------------------------
                     SDA1.Fill(dt1);
                     SDA2.Fill(dt2);
                     SDA3.Fill(dt3);
-                    SDA4.Fill(dt4);
+                    //SDA4.Fill(dt4);
+                    SDA5.Fill(dt5);
                     //----------------------------------------------
 
                     CbClass.ItemsSource = dt1.DefaultView;
@@ -79,9 +88,13 @@ namespace YchetPer
                     CbCondition.DisplayMemberPath = "Condition";
                     CbCondition.SelectedValuePath = "ID";
                     //----------------------------------------------
-                    TbNumKab.ItemsSource = dt3.DefaultView;
-                    TbNumKab.DisplayMemberPath = "NumKab";
-                    TbNumKab.SelectedValuePath = "ID";
+                    CbNumKab.ItemsSource = dt3.DefaultView;
+                    CbNumKab.DisplayMemberPath = "NumKab";
+                    CbNumKab.SelectedValuePath = "ID";
+                    //----------------------------------------------
+                    CbTitle.ItemsSource = dt5.DefaultView;
+                    CbTitle.DisplayMemberPath = "Title";
+                    CbTitle.SelectedValuePath = "ID";
                     //////----------------------------------------------
                     //CbTitle.ItemsSource = dt4.DefaultView;
                     //CbTitle.DisplayMemberPath = "Title";
@@ -99,17 +112,18 @@ namespace YchetPer
             using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
             {
                 connection.Open();
-                if (String.IsNullOrEmpty(TbTitle.Text) || String.IsNullOrEmpty(TbNumber.Text) || String.IsNullOrEmpty(StartWork.Text) || String.IsNullOrEmpty(CbClass.Text) || TbNumKab.SelectedIndex == -1 || CbCondition.SelectedIndex == -1)
+                if (String.IsNullOrEmpty(TbNumber.Text) || String.IsNullOrEmpty(StartWork.Text) || String.IsNullOrEmpty(CbClass.Text) || CbNumKab.SelectedIndex == -1 || CbCondition.SelectedIndex == -1 || CbTitle.SelectedIndex ==-1)
                 {
                     MessageBox.Show("Заполните все поля", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                int id, id2, id3;
+                int id, id2, id3,id4;
                 bool resultClass = int.TryParse(CbClass.SelectedValue.ToString(), out id);
-                bool resultKab = int.TryParse(TbNumKab.SelectedValue.ToString(), out id2);
+                bool resultKab = int.TryParse(CbNumKab.SelectedValue.ToString(), out id2);
                 bool resultCon = int.TryParse(CbCondition.SelectedValue.ToString(), out id3);
-                var name = TbTitle.Text;
+                bool resultTitl = int.TryParse(CbTitle.SelectedValue.ToString(), out id4); 
+                //var name = TbTitle.Text;
                 var numkab = TbNumber.Text;
                 var number = TbNumber.Text;
                 var idtype = CbClass.Text;
@@ -117,7 +131,7 @@ namespace YchetPer
                 var startWork = StartWork.Text;
 
               
-                    string query = $@"INSERT INTO Devices(IDType,IDKabuneta,Title,Number,IDCondition,StartWork) values ('{id}',{id2},'{name}','{number}','{id3}','{startWork}');";
+                    string query = $@"INSERT INTO Devices(IDType,IDKabuneta,IDTitle,Number,IDCondition,StartWork) values ('{id}',{id2},'{id4}','{number}','{id3}','{startWork}');";
                     SQLiteCommand cmd = new SQLiteCommand(query, connection);
                     try
                     {
@@ -149,16 +163,16 @@ namespace YchetPer
 
         private void BtnDellKab_Click(object sender, RoutedEventArgs e)
         {
-            Delete();
+            DeleteKab();
             CbFill();
         }
-        public void Delete()
+        public void DeleteKab()
         {
             using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
             {
 
 
-                if (TbNumKab.SelectedIndex == -1)
+                if (CbNumKab.SelectedIndex == -1)
                 {
                     MessageBox.Show("Выберите какой кабинет нужно удалить!!!!!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -166,7 +180,7 @@ namespace YchetPer
                 {
                     
                     int IdKab;
-                    bool NumKab = int.TryParse(TbNumKab.SelectedValue.ToString(), out IdKab);
+                    bool NumKab = int.TryParse(CbNumKab.SelectedValue.ToString(), out IdKab);
                     try
                     {
                         string query1 = $@"DELETE FROM NumberKabs WHERE id =  '{IdKab}'";
@@ -182,6 +196,76 @@ namespace YchetPer
 
                 }
             }
-        }  
+        }
+
+        private void BtnAddTitl_Click(object sender, RoutedEventArgs e)
+        {
+            EdditTitle EddTitl = new EdditTitle();
+            EddTitl.Owner = this;
+            bool? result = EddTitl.ShowDialog();
+            switch (result)
+            {
+                default:
+                    CbFill();
+                    break;
+            }
+        }
+
+        public void DeleteTitl()
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
+            {
+
+
+                if (CbTitle.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Выберите какой кабинет нужно удалить!!!!!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+
+                    int IdTil;
+                    bool NumTitl = int.TryParse(CbTitle.SelectedValue.ToString(), out IdTil);
+                    try
+                    {
+                        string query1 = $@"DELETE FROM NumberKabs WHERE id =  '{IdTil}'";
+                        connection.Open();
+                        SQLiteCommand cmd1 = new SQLiteCommand(query1, connection);
+                        DataTable DT = new DataTable("Titles");
+                        cmd1.ExecuteNonQuery();
+                    }
+                    catch (Exception exp)
+                    {
+                        MessageBox.Show(exp.Message);
+                    }
+
+                }
+            }
+        }
+
+        private void BtnDellTilt_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteTitl();
+            CbFill();
+        }
+
+        private void BtnAdd_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            //using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
+            //{
+            //    string query = $@"INSERT INTO Images ( Image ) VALUES ( @Image )";
+            //    string fileName = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\Alien 1.bmp";                  //Путь к файлу
+            //    SqlParameter sqlParameter = new SqlParameter("@Image", SqlDbType.VarBinary);
+            //    Image image = Image.FromFile(fileName);                                                                               //Изображение из файла.
+            //    MemoryStream memoryStream = new MemoryStream();                                                                       //Поток в который запишем изображение
+            //    image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Bmp);
+            //    sqlParameter.Value = memoryStream.ToArray();
+            //    sqlCommand.Parameters.Add(sqlParameter);
+            //    sqlConnection.Open();
+            //    sqlCommand.ExecuteNonQuery();
+            //    sqlConnection.Close();
+            //    memoryStream.Dispose();
+            //}
+        }
     }
 }

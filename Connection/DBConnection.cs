@@ -9,6 +9,6 @@ namespace YchetPer.Connection
 {
     class DBConnection
     {
-        public static string myConn = $@"Data Source=DeviceACC3.db;Version=3;";
+        public static string myConn = $@"Data Source=DeviceACC4.db;Version=3;";
     }
 }

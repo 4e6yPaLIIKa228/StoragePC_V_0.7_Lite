@@ -18,13 +18,19 @@
         </Grid.ColumnDefinitions>
         <DataGrid Grid.Column="0" Grid.Row="0"  Grid.ColumnSpan="2"  x:Name="DGAllEmp" HorizontalAlignment="Right" CanUserAddRows="False" Margin="0,45,3,0" ColumnWidth="*" Width="866" AutoGenerateColumns="False" MinColumnWidth="20" MouseDoubleClick="DGAllEmp_MouseDoubleClick" Height="405" VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
                 <DataGridTextColumn Header="Тип" Binding="{Binding Class}"/>
                 <DataGridTextColumn Header="Название" Binding="{Binding Title}"/>
                 <DataGridTextColumn Header="Кабинет" Binding="{Binding NumKab}"/>
                 <DataGridTextColumn Header="Номер" Binding="{Binding Number}"/>
                 <DataGridTextColumn Header="Состояние" Binding="{Binding Condition}"/>
                 <DataGridTextColumn Header="Начало работы" Binding="{Binding StartWork}"/>
+                <DataGridTemplateColumn Header="Картинка">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Image}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="BtnAdd"  Grid.Column="0"  Grid.Row="1" Content="Добавить" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="32" Width="93" Click="BtnAdd_Click" Margin="10,22,0,0"/>
@@ -43,11 +49,11 @@
                 <Label Content="Состояние" Margin="0,0,0,10"  HorizontalAlignment="Left" Width="77"/>
                 <Label Content="Начало работы" Margin="0,0,0,0"  HorizontalAlignment="Left" Width="105" />
 
-                <TextBox x:Name="TbTitle" HorizontalAlignment="Left" Height="22" Margin="100,-170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" VerticalContentAlignment="Center" />
+                <ComboBox x:Name="CbTitle" HorizontalAlignment="Left" Height="22" Margin="100,-170,0,0"  VerticalAlignment="Top" Width="219" VerticalContentAlignment="Center" />
                 <DatePicker x:Name="StartWork" HorizontalAlignment="Left" Margin="100,-30,0,0" VerticalAlignment="Top" Width="219" Height="32"/>
                 <ComboBox x:Name="CbCondition" HorizontalAlignment="Left" Margin="100,-65,0,0" VerticalAlignment="Top" Width="219" Height="22"/>
                 <ComboBox x:Name="CbClass" HorizontalAlignment="Left" Margin="100,-205,0,0" VerticalAlignment="Top" Width="219" Height="22"/>
-                <ComboBox x:Name="TbNumKab" HorizontalAlignment="Left" Height="22" Margin="100,-135,0,0"  VerticalAlignment="Top" Width="219" VerticalContentAlignment="Center" />
+                <ComboBox x:Name="CbNumKab" HorizontalAlignment="Left" Height="22" Margin="100,-135,0,0"  VerticalAlignment="Top" Width="219" VerticalContentAlignment="Center" />
                 <TextBox x:Name="TbNumber" HorizontalAlignment="Left" Margin="100,-100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" Height="22" VerticalContentAlignment="Center"/>
 
                 <Button x:Name="BtnEdd" Content="Изменить" HorizontalAlignment="Left" Margin="145,60,0,0" VerticalAlignment="Top" Height="32" Width="93" Click="BtnEdd_Click"/>

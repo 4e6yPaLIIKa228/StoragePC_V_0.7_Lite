@@ -52,13 +52,15 @@ namespace YchetPer
                 try
                 {
                     connection.Open();
-                    string query = $@"SELECT Devices.ID, Types.Class, Devices.Title, Devices.Number, Conditions.Condition ,NumberKabs.NumKab ,Devices.StartWork 
-                                      FROM Devices  JOIN  Types
-                                      ON Devices.IDType = Types.ID
-                                      JOIN  Conditions
-                                      ON Devices.IDCondition = Conditions.ID
-                                      JOIN  NumberKabs
-                                      ON Devices.IDKabuneta = NumberKabs.ID;";
+                    string query = $@"SELECT Devices.ID, Types.Class, Titles.Title, Devices.Number, Conditions.Condition ,NumberKabs.NumKab ,Devices.StartWork,Devices.IDImage
+                                        FROM Devices JOIN  Types
+                                        ON Devices.IDType = Types.ID
+                                        JOIN  Conditions
+                                        ON Devices.IDCondition = Conditions.ID
+                                        JOIN  NumberKabs
+                                        ON Devices.IDKabuneta = NumberKabs.ID
+                                        JOIN Titles
+                                        ON Devices.IDTitle = Titles.ID;";
                     SQLiteCommand cmd = new SQLiteCommand(query, connection);
                     DataTable DT = new DataTable("Devices");
                     SQLiteDataAdapter SDA = new SQLiteDataAdapter(cmd);
@@ -81,13 +83,15 @@ namespace YchetPer
                 try
                 {
                     connection.Open();
-                    string query = $@"SELECT Devices.ID, Types.Class, Devices.Title, Devices.Number, Conditions.Condition ,NumberKabs.NumKab ,Devices.StartWork 
-                                    FROM Devices JOIN  Types
-                                    ON Devices.IDType = Types.ID
-                                    JOIN  Conditions
-                                    ON Devices.IDCondition = Conditions.ID
-                                    JOIN  NumberKabs
-                                    ON Devices.IDKabuneta = NumberKabs.ID;";
+                    string query = $@"SELECT Devices.ID, Types.Class, Titles.Title, Devices.Number, Conditions.Condition ,NumberKabs.NumKab ,Devices.StartWork,Devices.IDImage
+                                        FROM Devices JOIN  Types
+                                        ON Devices.IDType = Types.ID
+                                        JOIN  Conditions
+                                        ON Devices.IDCondition = Conditions.ID
+                                        JOIN  NumberKabs
+                                        ON Devices.IDKabuneta = NumberKabs.ID
+                                        JOIN Titles
+                                        ON Devices.IDTitle = Titles.ID;";
                     SQLiteCommand cmd = new SQLiteCommand(query, connection);
                     DataTable DT = new DataTable("Devices");
                     SQLiteDataAdapter SDA = new SQLiteDataAdapter(cmd);
@@ -166,8 +170,8 @@ namespace YchetPer
                 {
                     DataRowView row = (DataRowView)DGAllEmp.SelectedItems[0];
                     CbClass.Text = row["Class"].ToString();
-                    TbTitle.Text = row["Title"].ToString();
-                    TbNumKab.Text = row["NumKab"].ToString();
+                    CbTitle.Text = row["Title"].ToString();
+                    CbNumKab.Text = row["NumKab"].ToString();
                     TbNumber.Text = row["Number"].ToString();
                     CbCondition.Text = row["Condition"].ToString();
                     StartWork.Text = row["StartWork"].ToString();
@@ -193,27 +197,32 @@ namespace YchetPer
                     string query1 = $@"SELECT * FROM Types"; // Типы
                     string query2 = $@"SELECT * FROM Conditions"; // Состояние
                     string query3 = $@"SELECT * FROM NumberKabs"; // Кабинеты
-                    string query4 = $@"SELECT  Devices.Title FROM Devices"; // Названия
+                    //string query4 = $@"SELECT  Devices.Title FROM Devices"; // Названия
+                    string query5 = $@"SELECT * FROM Titles"; // Устройства
                     //----------------------------------------------
                     SQLiteCommand cmd1 = new SQLiteCommand(query1, connection);
                     SQLiteCommand cmd2 = new SQLiteCommand(query2, connection);
                     SQLiteCommand cmd3 = new SQLiteCommand(query3, connection);
-                    SQLiteCommand cmd4 = new SQLiteCommand(query4, connection);
+                    //SQLiteCommand cmd4 = new SQLiteCommand(query4, connection);
+                    SQLiteCommand cmd5 = new SQLiteCommand(query5, connection);
                     //----------------------------------------------
                     SQLiteDataAdapter SDA1 = new SQLiteDataAdapter(cmd1);
                     SQLiteDataAdapter SDA2 = new SQLiteDataAdapter(cmd2);
                     SQLiteDataAdapter SDA3 = new SQLiteDataAdapter(cmd3);
-                    SQLiteDataAdapter SDA4 = new SQLiteDataAdapter(cmd4);
+                    //SQLiteDataAdapter SDA4 = new SQLiteDataAdapter(cmd4);
+                    SQLiteDataAdapter SDA5 = new SQLiteDataAdapter(cmd5);
                     //----------------------------------------------
                     DataTable dt1 = new DataTable("Types");
                     DataTable dt2 = new DataTable("Conditions");
                     DataTable dt3 = new DataTable("NumberKabs");
                     DataTable dt4 = new DataTable("Devices");
+                    DataTable dt5 = new DataTable("Titles");
                     //----------------------------------------------
                     SDA1.Fill(dt1);
                     SDA2.Fill(dt2);
                     SDA3.Fill(dt3);
-                    SDA4.Fill(dt4);
+                    //SDA4.Fill(dt4);
+                    SDA5.Fill(dt5);
                     //----------------------------------------------
                     CbClass.ItemsSource = dt1.DefaultView;
                     CbClass.DisplayMemberPath = "Class";
@@ -223,9 +232,13 @@ namespace YchetPer
                     CbCondition.DisplayMemberPath = "Condition";
                     CbCondition.SelectedValuePath = "ID";
                     //----------------------------------------------
-                    TbNumKab.ItemsSource = dt3.DefaultView;
-                    TbNumKab.DisplayMemberPath = "NumKab";
-                    TbNumKab.SelectedValuePath = "ID";
+                    CbNumKab.ItemsSource = dt3.DefaultView;
+                    CbNumKab.DisplayMemberPath = "NumKab";
+                    CbNumKab.SelectedValuePath = "ID";
+                    //----------------------------------------------
+                    CbTitle.ItemsSource = dt5.DefaultView;
+                    CbTitle.DisplayMemberPath = "Title";
+                    CbTitle.SelectedValuePath = "ID";
                     //////----------------------------------------------
                     //CbTitle.ItemsSource = dt4.DefaultView;
                     //CbTitle.DisplayMemberPath = "Title";
@@ -242,35 +255,36 @@ namespace YchetPer
         {
             if (TbID.Text == null)
             {
-                MessageBox.Show("Выберите в таблице строку изменения!!!!!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Выберите в таблице строку изменения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 BtnEdd.IsEnabled = false;
             }
             else
             {
                 using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
                 {
-                    int id, id2, id3;
+                    int id, id2, id3,id4;
                     bool resultClass = int.TryParse(CbClass.SelectedValue.ToString(), out id);
-                    bool resultKab = int.TryParse(TbNumKab.SelectedValue.ToString(), out id2);
+                    bool resultKab = int.TryParse(CbNumKab.SelectedValue.ToString(), out id2);
                     bool resultCon = int.TryParse(CbCondition.SelectedValue.ToString(), out id3);
-                    var name = TbTitle.Text;
+                    bool resultTitl = int.TryParse(CbTitle.SelectedValue.ToString(), out id4);
+                    //var name = TbTitle.Text;
                     var numkab = TbNumber.Text;
                     var number = TbNumber.Text;
                     var idtype = CbClass.Text;
-                    //var idkab = TbNumKab.SelectedValuePath = " ";
+                    //var idkab = CbNumKab.SelectedValuePath = " ";
                     var idcon = CbCondition.Text;
                     var startWork = StartWork.Text;
                     var ID = TbID.Text;
                     connection.Open();
 
                     //string query = $@"UPDATE Devices SET (IDType, IDKabuneta, Title, Number, IDCondition, StartWork WHERE ID) values ('{id}',{id2},'{name}','{number}','{id3}','{startWork}','{Idi}');";
-                    string query = $@"UPDATE Devices SET IDType=@IDType, IDKabuneta=@IDKabuneta, Title=@Title, Number=@Number, IDCondition=@IDCondition, StartWork=@StartWork WHERE ID=@ID;";
+                    string query = $@"UPDATE Devices SET IDType=@IDType, IDKabuneta=@IDKabuneta, IDTitle=@IDTitle, Number=@Number, IDCondition=@IDCondition, StartWork=@StartWork WHERE ID=@ID;";
                     SQLiteCommand cmd = new SQLiteCommand(query, connection);
                     try
                     {
                         cmd.Parameters.AddWithValue("@IDType", id);
                         cmd.Parameters.AddWithValue("@IDKabuneta", id2);
-                        cmd.Parameters.AddWithValue("@Title", name);
+                        cmd.Parameters.AddWithValue("@IDTitle", id4);
                         cmd.Parameters.AddWithValue("@Number", number);
                         cmd.Parameters.AddWithValue("@IDCondition", id3);
                         cmd.Parameters.AddWithValue("@StartWork", startWork);
