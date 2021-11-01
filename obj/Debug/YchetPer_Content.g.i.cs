@@ -10,5 +10,6 @@
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("deviceacc3.db")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("deviceacc4.db")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("deviceacc5.db")]
 
 

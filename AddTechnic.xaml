@@ -17,7 +17,7 @@
         <ComboBox x:Name="CbTitle" HorizontalAlignment="Left" Height="22" Margin="204,77,0,0" VerticalAlignment="Top" Width="219" VerticalContentAlignment="Center" />
         <DatePicker x:Name="StartWork" HorizontalAlignment="Left" Margin="204,227,0,0" VerticalAlignment="Top" Width="219" Height="26"/>
         <ComboBox x:Name="CbCondition" HorizontalAlignment="Left" Margin="204,167,0,0" VerticalAlignment="Top" Width="219" Height="22"/>
-        <Button x:Name="BtnAdd" Content="Добавить" HorizontalAlignment="Left" Height="38" Margin="400,341,0,0" VerticalAlignment="Top" Width="102" Click="BtnAdd_Click"/>
+        <Button x:Name="BtnAdd" Content="Добавить" HorizontalAlignment="Left" Height="38" Margin="263,336,0,0" VerticalAlignment="Top" Width="102" Click="BtnAdd_Click"/>
         <ComboBox x:Name="CbClass" HorizontalAlignment="Left" Margin="204,47,0,0" VerticalAlignment="Top" Width="219" Height="22"/>
         <ComboBox x:Name="CbNumKab" HorizontalAlignment="Left" Height="22" Margin="204,107,0,0"  VerticalAlignment="Top" Width="219" VerticalContentAlignment="Center" />
         <TextBox x:Name="TbNumber" HorizontalAlignment="Left" Margin="204,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" Height="22" VerticalContentAlignment="Center"/>
@@ -27,6 +27,7 @@
         <Button x:Name="BtnAddTitl" Content="+" HorizontalAlignment="Left" Margin="440,77,0,0" VerticalAlignment="Top" Width="25" Height="22" Click="BtnAddTitl_Click" />
         <Button x:Name="BtnDellTilt" Content="-" HorizontalAlignment="Left" Margin="163,77,0,0" VerticalAlignment="Top" Width="25" Height="22" Click="BtnDellTilt_Click" />
         <Label Content="Картинка" HorizontalAlignment="Left" Margin="38,277,0,0" VerticalAlignment="Top" Width="104" HorizontalContentAlignment="Right" />
-        <Button x:Name="BtnAdd_Copy" Content="Добавить картинку" HorizontalAlignment="Left" Height="38" Margin="225,277,0,0" VerticalAlignment="Top" Width="120" Click="BtnAdd_Copy_Click" />
+        <!--<Button x:Name="BtnAdd_Copy" Content="Добавить картинку" HorizontalAlignment="Left" Height="38" Margin="129,340,0,0" VerticalAlignment="Top" Width="120" Click="BtnAdd_Copy_Click" />-->
+        <!--<Image x:Name="photo" HorizontalAlignment="Left" Height="100" Margin="391,264,0,0" VerticalAlignment="Top" Width="100"/>-->
     </Grid>
 </Window>

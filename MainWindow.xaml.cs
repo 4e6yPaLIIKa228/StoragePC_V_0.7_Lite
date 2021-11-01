@@ -16,7 +16,8 @@ using System.Data.SQLite;
 using YchetPer.Connection;
 using System.Data;
 using Excel = Microsoft.Office.Interop.Excel;
-
+using System.IO;
+using System.Drawing;
 
 namespace YchetPer
 {
@@ -44,6 +45,45 @@ namespace YchetPer
 
 
         }
+        //public System.Drawing.Image ByteToImage(byte[] imageBytes)
+        //{
+        //    // Convert byte[] to Image
+        //    MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+        //    ms.Write(imageBytes, 0, imageBytes.Length);
+        //    System.Drawing.Image image = new Bitmap(ms);
+        //    return image;
+        //}
+        //private static BitmapImage BytesToImage(byte[] bytes)
+        //{
+        //    var bm = new BitmapImage();
+        //    using (MemoryStream stream = new MemoryStream(bytes))
+        //    {
+        //        stream.Position = 0;
+        //        bm.BeginInit();
+        //        bm.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+        //        bm.CacheOption = BitmapCacheOption.OnLoad;
+        //        bm.UriSource = null;
+        //        bm.StreamSource = stream;
+        //        bm.EndInit();
+        //    }
+        //    return bm;
+        //}
+      
+        void LoadImage()
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = $@"SELECT  Devices.Photo";
+                    SQLiteCommand cmd = new SQLiteCommand(query, connection);
+                   
+                }
+                catch (Exception exc) { MessageBox.Show(exc.Message); }
+            }
+        }
+            
 
         public void DisplayData()
         {
@@ -52,7 +92,7 @@ namespace YchetPer
                 try
                 {
                     connection.Open();
-                    string query = $@"SELECT Devices.ID, Types.Class, Titles.Title, Devices.Number, Conditions.Condition ,NumberKabs.NumKab ,Devices.StartWork,Devices.IDImage
+                    string query = $@"SELECT Devices.ID, Types.Class, Titles.Title, Devices.Number, Conditions.Condition ,NumberKabs.NumKab ,Devices.StartWork,Devices.Photo
                                         FROM Devices JOIN  Types
                                         ON Devices.IDType = Types.ID
                                         JOIN  Conditions
@@ -72,41 +112,39 @@ namespace YchetPer
                 {
                     MessageBox.Show(exp.Message);
                 }
-
-
             }
         }
-        public void UpdateDG()
-        {
-            using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
-            {
-                try
-                {
-                    connection.Open();
-                    string query = $@"SELECT Devices.ID, Types.Class, Titles.Title, Devices.Number, Conditions.Condition ,NumberKabs.NumKab ,Devices.StartWork,Devices.IDImage
-                                        FROM Devices JOIN  Types
-                                        ON Devices.IDType = Types.ID
-                                        JOIN  Conditions
-                                        ON Devices.IDCondition = Conditions.ID
-                                        JOIN  NumberKabs
-                                        ON Devices.IDKabuneta = NumberKabs.ID
-                                        JOIN Titles
-                                        ON Devices.IDTitle = Titles.ID;";
-                    SQLiteCommand cmd = new SQLiteCommand(query, connection);
-                    DataTable DT = new DataTable("Devices");
-                    SQLiteDataAdapter SDA = new SQLiteDataAdapter(cmd);
-                    SDA.Fill(DT);
-                    DGAllEmp.ItemsSource = DT.DefaultView;
+        //public void UpdateDG()
+        //{
+        //    using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
+        //    {
+        //        try
+        //        {
+        //            connection.Open();
+        //            string query = $@"SELECT Devices.ID, Types.Class, Titles.Title, Devices.Number, Conditions.Condition ,NumberKabs.NumKab ,Devices.StartWork,Devices.Photo
+        //                                FROM Devices JOIN  Types
+        //                                ON Devices.IDType = Types.ID
+        //                                JOIN  Conditions
+        //                                ON Devices.IDCondition = Conditions.ID
+        //                                JOIN  NumberKabs
+        //                                ON Devices.IDKabuneta = NumberKabs.ID
+        //                                JOIN Titles
+        //                                ON Devices.IDTitle = Titles.ID;";
+        //            SQLiteCommand cmd = new SQLiteCommand(query, connection);
+        //            DataTable DT = new DataTable("Devices");
+        //            SQLiteDataAdapter SDA = new SQLiteDataAdapter(cmd);
+        //            SDA.Fill(DT);
+        //            DGAllEmp.ItemsSource = DT.DefaultView;
 
-                }
-                catch (Exception exp)
-                {
-                    MessageBox.Show(exp.Message);
-                }
+        //        }
+        //        catch (Exception exp)
+        //        {
+        //            MessageBox.Show(exp.Message);
+        //        }
 
 
-            }
-        }
+        //    }
+        //}
         public void Delete()
         {
             using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
@@ -142,20 +180,23 @@ namespace YchetPer
         //}
         private void BtnUpd_Click(object sender, RoutedEventArgs e)
         {
-            UpdateDG();
+            //UpdateDG();
+            DisplayData();
         }
 
         private void BtnDel_Click(object sender, RoutedEventArgs e)
         {
             Delete();
-            UpdateDG();
+            DisplayData();
+            //UpdateDG();
         }
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             AddTechnic AddTec = new AddTechnic();
             AddTec.Owner = this;
             AddTec.ShowDialog();
-            UpdateDG();
+            DisplayData();
+            //UpdateDG();
 
 
         }
@@ -291,7 +332,8 @@ namespace YchetPer
                         cmd.Parameters.AddWithValue("@ID", ID);
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Данные изменены");
-                        UpdateDG();
+                        DisplayData();
+                        //UpdateDG();
 
                     }
 

@@ -18,8 +18,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Drawing;
 using System.IO;
-
-
+using Microsoft.Win32;
 
 namespace YchetPer
 {
@@ -112,25 +111,26 @@ namespace YchetPer
             using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
             {
                 connection.Open();
-                if (String.IsNullOrEmpty(TbNumber.Text) || String.IsNullOrEmpty(StartWork.Text) || String.IsNullOrEmpty(CbClass.Text) || CbNumKab.SelectedIndex == -1 || CbCondition.SelectedIndex == -1 || CbTitle.SelectedIndex ==-1)
+                if (String.IsNullOrEmpty(TbNumber.Text) || String.IsNullOrEmpty(CbClass.Text) || CbNumKab.SelectedIndex == -1 || CbCondition.SelectedIndex == -1 || CbTitle.SelectedIndex ==-1)
                 {
                     MessageBox.Show("Заполните все поля", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                int id, id2, id3,id4;
+                int id, id2, id3, id4;
                 bool resultClass = int.TryParse(CbClass.SelectedValue.ToString(), out id);
                 bool resultKab = int.TryParse(CbNumKab.SelectedValue.ToString(), out id2);
                 bool resultCon = int.TryParse(CbCondition.SelectedValue.ToString(), out id3);
-                bool resultTitl = int.TryParse(CbTitle.SelectedValue.ToString(), out id4); 
+                bool resultTitl = int.TryParse(CbTitle.SelectedValue.ToString(), out id4);
                 //var name = TbTitle.Text;
                 var numkab = TbNumber.Text;
                 var number = TbNumber.Text;
                 var idtype = CbClass.Text;
                 var idcon = CbCondition.Text;
                 var startWork = StartWork.Text;
+                 //var imageBuffer = BitmapSourceToByteArray((BitmapSource)photo.Source);
 
-              
+
                     string query = $@"INSERT INTO Devices(IDType,IDKabuneta,IDTitle,Number,IDCondition,StartWork) values ('{id}',{id2},'{id4}','{number}','{id3}','{startWork}');";
                     SQLiteCommand cmd = new SQLiteCommand(query, connection);
                     try
@@ -242,30 +242,38 @@ namespace YchetPer
                 }
             }
         }
-
+            
         private void BtnDellTilt_Click(object sender, RoutedEventArgs e)
         {
             DeleteTitl();
             CbFill();
         }
 
-        private void BtnAdd_Copy_Click(object sender, RoutedEventArgs e)
-        {
-            //using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
-            //{
-            //    string query = $@"INSERT INTO Images ( Image ) VALUES ( @Image )";
-            //    string fileName = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\Alien 1.bmp";                  //Путь к файлу
-            //    SqlParameter sqlParameter = new SqlParameter("@Image", SqlDbType.VarBinary);
-            //    Image image = Image.FromFile(fileName);                                                                               //Изображение из файла.
-            //    MemoryStream memoryStream = new MemoryStream();                                                                       //Поток в который запишем изображение
-            //    image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Bmp);
-            //    sqlParameter.Value = memoryStream.ToArray();
-            //    sqlCommand.Parameters.Add(sqlParameter);
-            //    sqlConnection.Open();
-            //    sqlCommand.ExecuteNonQuery();
-            //    sqlConnection.Close();
-            //    memoryStream.Dispose();
-            //}
-        }
+        //private void BtnAdd_Copy_Click(object sender, RoutedEventArgs e)
+        //{
+            
+        //    OpenFileDialog op = new OpenFileDialog();
+        //    op.Title = "Select a picture";
+        //    op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+        //        "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+        //        "Portable Network Graphic (*.png)|*.png";
+        //    if (op.ShowDialog() == true)
+        //    {
+        //        //photo.Source = new BitmapImage(new Uri(op.FileName));
+        //    }
+        //}
+        //private byte[] BitmapSourceToByteArray(BitmapSource image)
+        //{
+        //    using (var stream = new MemoryStream())
+        //    {
+              
+        //        var encoder = new PngBitmapEncoder(); // or some other encoder
+        //        encoder.Frames.Add(BitmapFrame.Create(image));
+        //        encoder.Save(stream);
+        //        return stream.ToArray();
+
+        //    }
+        //}
+
     }
 }
