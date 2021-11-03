@@ -8,16 +8,17 @@
         Title="Регистрация" WindowState="Normal" WindowStartupLocation="CenterScreen" Height="430" Width="380" MaxHeight="430" MaxWidth="380" MinHeight="430" MinWidth="380" >
     <Grid>
         <TextBox x:Name="TbLogin" HorizontalAlignment="Left" Height="25" Margin="171,34,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" TextInput="TbLogin_TextInput"/>
-        <TextBox x:Name="TbPass" HorizontalAlignment="Left" Height="25" Margin="171,94,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <!--<TextBox x:Name="TbPass" HorizontalAlignment="Left" Height="25" Margin="171,94,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>-->
         <TextBox x:Name="TbMail" HorizontalAlignment="Left" Height="25" Margin="84,154,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="240" RenderTransformOrigin="1.544,-2.867"/>
         <TextBox x:Name="TbProverka" HorizontalAlignment="Left" Height="25" Margin="171,228,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.544,-2.867"/>
+        <PasswordBox x:Name="TbPass" HorizontalAlignment="Left" Height="25" Margin="171,94,0,0"   VerticalAlignment="Top" Width="120" />
         <Label Content="Логин:" HorizontalAlignment="Left" Margin="112,34,0,0" VerticalAlignment="Top" Height="25" Width="44"/>
         <Label  Content="Пароль:" HorizontalAlignment="Left" Margin="104,94,0,0" VerticalAlignment="Top" Height="25" Width="62"/>
         <Label Content="Почта:" HorizontalAlignment="Left" Margin="28,154,0,0" VerticalAlignment="Top" Height="25" Width="54"/>
         <Label x:Name="LabProv" Content="Проверка" HorizontalAlignment="Left" Margin="84,226,0,0" VerticalAlignment="Top" Height="25" Width="72"/>
-        <Button x:Name="BtnBack" Content="Назад" HorizontalAlignment="Left" Margin="16,329,0,0" VerticalAlignment="Top" Height="32" Width="93" Click="BtnBack_Click"/>
-        <Button x:Name="BtnProverka" Content="Проверка" HorizontalAlignment="Left" Margin="129,329,0,0" VerticalAlignment="Top" Height="32" Width="93" Click="BtnProverka_Click"/>
-        <Button x:Name="BtnRegist" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="238,329,0,0" VerticalAlignment="Top" Height="32" Width="124" Click="BtnRegist_Click"/>
+        <Button x:Name="BtnBack" Content="Назад" HorizontalAlignment="Left" Margin="10,329,0,0" VerticalAlignment="Top" Height="32" Width="65" Click="BtnBack_Click"/>
+        <Button x:Name="BtnProverka" Content="Проверка" HorizontalAlignment="Left" Margin="104,329,0,0" VerticalAlignment="Top" Height="32" Width="93" Click="BtnProverka_Click"/>
+        <Button x:Name="BtnRegist" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="216,329,0,0" VerticalAlignment="Top" Height="32" Width="124" Click="BtnRegist_Click"/>
 
     </Grid>
 </Window>

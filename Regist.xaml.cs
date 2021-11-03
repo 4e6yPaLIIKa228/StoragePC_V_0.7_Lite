@@ -58,7 +58,7 @@ namespace YchetPer
         private void OffButton()
         {
             TbLogin.IsReadOnly = true;
-            TbPass.IsReadOnly = true;
+            TbPass.IsEnabled = false;
             TbMail.IsReadOnly = true;
         }
         private static string RndStr(int len) //геннератор пароля(временного)
@@ -77,11 +77,15 @@ namespace YchetPer
             using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
             {
 
-                if (String.IsNullOrEmpty(TbLogin.Text) || String.IsNullOrEmpty(TbPass.Text) || String.IsNullOrEmpty(TbMail.Text))
+                if (String.IsNullOrEmpty(TbLogin.Text) || String.IsNullOrEmpty(TbPass.Password) || String.IsNullOrEmpty(TbMail.Text))
                 {
                     MessageBox.Show("Заполните поле.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else if (TbLogin.Text.Length <= 4)
+                {
+                    MessageBox.Show("Логин должен быть больше 4");
+                }
+                else if (TbPass.Password.Length <= 4)
                 {
                     MessageBox.Show("Пароль должен быть больше 4");
                 }
@@ -92,7 +96,7 @@ namespace YchetPer
                         try
                         {
                             TimeKod = RndStr(8);
-                            MessageBox.Show("На вашу почту выслан код для проверки, введите его, чтобы продолжить", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                            //MessageBox.Show("На вашу почту выслан код для проверки, введите его, чтобы продолжить", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                             SmtpClient Smtp = new SmtpClient("smtp.mail.ru");
                             Smtp.UseDefaultCredentials = true;
                             Smtp.EnableSsl = true;
@@ -102,8 +106,11 @@ namespace YchetPer
                             Message.To.Add(new MailAddress(TbMail.Text));
                             Message.To.Add(new MailAddress(TbMail.Text));
                             Message.Subject = "Учёт компьютерной техники.";
-                            Message.Body = "Временный код: " + TimeKod + ". Для регитсрации  аккаунта: " + TbLogin.Text + ". На это сообще не нужно отвечать.";
+                            Message.Body = "Временный код: " + TimeKod + "  . Для регитсрации  аккаунта: " + TbLogin.Text + ". На это сообще не нужно отвечать.";
                             Smtp.Send(Message);
+                            MessageBox.Show("На вашу почту выслан код для проверки, введите его, чтобы продолжить", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                            OffButton();
+                            VisibleElements();
 
                         }
                         catch (FormatException)
@@ -114,9 +121,11 @@ namespace YchetPer
                         {
                             MessageBox.Show("Введенная почта некорректна.");
                         }
-                        OffButton();
-                        VisibleElements();
+                        
                     }
+                //    MessageBox.Show("На вашу почту выслан код для проверки, введите его, чтобы продолжить", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                //    OffButton();
+                //VisibleElements(); 
                 }
             }
         }
@@ -139,7 +148,7 @@ namespace YchetPer
                     try
                     {
                         cmd.Parameters.AddWithValue("@Login", TbLogin.Text);
-                        cmd.Parameters.AddWithValue("@Pass", TbPass.Text);
+                        cmd.Parameters.AddWithValue("@Pass", TbPass.Password);
                         cmd.Parameters.AddWithValue("@Mail", TbMail.Text);
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Проверка пройдена. Аккаунт зарегистрирован.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -178,7 +187,7 @@ namespace YchetPer
 
         private void TbLogin_TextInput(object sender, TextCompositionEventArgs e)
         {
-             if (!Char.IsDigit(e.Text,47)) e.Handled = true;
+             //if (!Char.IsDigit(e.Text,47)) e.Handled = true;
 
         }
     }

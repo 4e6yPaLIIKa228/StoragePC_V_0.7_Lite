@@ -37,7 +37,7 @@ namespace YchetPer
 
         private void BtnLog_Click(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrEmpty(TbLogin.Text) || String.IsNullOrEmpty(TbPass.Text))
+            if (String.IsNullOrEmpty(TbLogin.Text) || String.IsNullOrEmpty(TbPass.Password))
             {
                 MessageBox.Show("Заполните поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -52,7 +52,7 @@ namespace YchetPer
                     
                     
                         cmd.Parameters.AddWithValue("@Login", TbLogin.Text);
-                        cmd.Parameters.AddWithValue("@Pass", TbPass.Text);
+                        cmd.Parameters.AddWithValue("@Pass", TbPass.Password);
                         int count = Convert.ToInt32(cmd.ExecuteScalar());
                         if (count == 1)
                         {
@@ -66,7 +66,6 @@ namespace YchetPer
                             MessageBox.Show("Неверное имя пользователя или пароль");
                         }
                     }
-
                       catch (SQLiteException ex)
                     {
                         MessageBox.Show(ex.Message);

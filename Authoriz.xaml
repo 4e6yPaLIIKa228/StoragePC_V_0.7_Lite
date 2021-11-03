@@ -8,7 +8,8 @@
         Title="Авторизация" WindowState="Normal" WindowStartupLocation="CenterScreen" Height="431" Width="400" MaxHeight="431" MaxWidth="400" MinHeight="431" MinWidth="400" >
     <Grid>
         <TextBox x:Name="TbLogin" HorizontalAlignment="Left" Height="31" Margin="136,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
-        <TextBox x:Name="TbPass" HorizontalAlignment="Left" Height="31" Margin="136,192,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="170"/>
+        <!--<TextBox x:Name="TbPass" HorizontalAlignment="Left" Height="31" Margin="136,192,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="170"/>-->
+        <PasswordBox x:Name="TbPass" HorizontalAlignment="Left" Height="31" Margin="136,192,0,0"  VerticalAlignment="Top" Width="170"/>
         <Button x:Name="BtnLog" Content="Войти" HorizontalAlignment="Left" Margin="266,331,0,0" VerticalAlignment="Top" Width="97" Height="38" Click="BtnLog_Click"/>
         <Button x:Name="BtnReg" Content="Регистрация" HorizontalAlignment="Left" Margin="149,331,0,0" VerticalAlignment="Top" Width="97" Height="38" Click="BtnReg_Click"/>
         <Button x:Name="BtnExit" Content="Выйти" HorizontalAlignment="Left" Margin="27,331,0,0" VerticalAlignment="Top" Width="97" Height="38" Click="BtnExit_Click"/>
