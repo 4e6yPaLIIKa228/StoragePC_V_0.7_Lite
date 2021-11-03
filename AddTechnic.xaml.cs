@@ -32,7 +32,6 @@ namespace YchetPer
         {
             InitializeComponent();
             CbFill();
-            //ComBoxKab();
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -95,9 +94,6 @@ namespace YchetPer
                     CbTitle.DisplayMemberPath = "Title";
                     CbTitle.SelectedValuePath = "ID";
                     //////----------------------------------------------
-                    //CbTitle.ItemsSource = dt4.DefaultView;
-                    //CbTitle.DisplayMemberPath = "Title";
-                    //CbTitle.SelectedValuePath = "ID";
                 }
                 catch (Exception ex)
                 {
@@ -122,14 +118,11 @@ namespace YchetPer
                 bool resultKab = int.TryParse(CbNumKab.SelectedValue.ToString(), out id2);
                 bool resultCon = int.TryParse(CbCondition.SelectedValue.ToString(), out id3);
                 bool resultTitl = int.TryParse(CbTitle.SelectedValue.ToString(), out id4);
-                //var name = TbTitle.Text;
                 var numkab = TbNumber.Text;
                 var number = TbNumber.Text;
                 var idtype = CbClass.Text;
                 var idcon = CbCondition.Text;
                 var startWork = StartWork.Text;
-                 //var imageBuffer = BitmapSourceToByteArray((BitmapSource)photo.Source);
-
 
                     string query = $@"INSERT INTO Devices(IDType,IDKabuneta,IDTitle,Number,IDCondition,StartWork) values ('{id}',{id2},'{id4}','{number}','{id3}','{startWork}');";
                     SQLiteCommand cmd = new SQLiteCommand(query, connection);
@@ -248,32 +241,6 @@ namespace YchetPer
             DeleteTitl();
             CbFill();
         }
-
-        //private void BtnAdd_Copy_Click(object sender, RoutedEventArgs e)
-        //{
-            
-        //    OpenFileDialog op = new OpenFileDialog();
-        //    op.Title = "Select a picture";
-        //    op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
-        //        "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
-        //        "Portable Network Graphic (*.png)|*.png";
-        //    if (op.ShowDialog() == true)
-        //    {
-        //        //photo.Source = new BitmapImage(new Uri(op.FileName));
-        //    }
-        //}
-        //private byte[] BitmapSourceToByteArray(BitmapSource image)
-        //{
-        //    using (var stream = new MemoryStream())
-        //    {
-              
-        //        var encoder = new PngBitmapEncoder(); // or some other encoder
-        //        encoder.Frames.Add(BitmapFrame.Create(image));
-        //        encoder.Save(stream);
-        //        return stream.ToArray();
-
-        //    }
-        //}
 
     }
 }

@@ -40,37 +40,8 @@ namespace YchetPer
             DGAllEmp.Columns[3].IsReadOnly = true;
             DGAllEmp.Columns[4].IsReadOnly = true;
             DGAllEmp.Columns[5].IsReadOnly = true;
-            DGAllEmp.Columns[6].IsReadOnly = true;
             BtnEdd.IsEnabled = false;
-            //DGAllEmp.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            //DGAllEmp.AllowUserToAddRows = false;
-
-
         }
-        //public System.Drawing.Image ByteToImage(byte[] imageBytes)
-        //{
-        //    // Convert byte[] to Image
-        //    MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
-        //    ms.Write(imageBytes, 0, imageBytes.Length);
-        //    System.Drawing.Image image = new Bitmap(ms);
-        //    return image;
-        //}
-        //private static BitmapImage BytesToImage(byte[] bytes)
-        //{
-        //    var bm = new BitmapImage();
-        //    using (MemoryStream stream = new MemoryStream(bytes))
-        //    {
-        //        stream.Position = 0;
-        //        bm.BeginInit();
-        //        bm.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-        //        bm.CacheOption = BitmapCacheOption.OnLoad;
-        //        bm.UriSource = null;
-        //        bm.StreamSource = stream;
-        //        bm.EndInit();
-        //    }
-        //    return bm;
-        //}
-      
         void LoadImage()
         {
             using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
@@ -116,37 +87,6 @@ namespace YchetPer
                 }
             }
         }
-        //public void UpdateDG()
-        //{
-        //    using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
-        //    {
-        //        try
-        //        {
-        //            connection.Open();
-        //            string query = $@"SELECT Devices.ID, Types.Class, Titles.Title, Devices.Number, Conditions.Condition ,NumberKabs.NumKab ,Devices.StartWork,Devices.Photo
-        //                                FROM Devices JOIN  Types
-        //                                ON Devices.IDType = Types.ID
-        //                                JOIN  Conditions
-        //                                ON Devices.IDCondition = Conditions.ID
-        //                                JOIN  NumberKabs
-        //                                ON Devices.IDKabuneta = NumberKabs.ID
-        //                                JOIN Titles
-        //                                ON Devices.IDTitle = Titles.ID;";
-        //            SQLiteCommand cmd = new SQLiteCommand(query, connection);
-        //            DataTable DT = new DataTable("Devices");
-        //            SQLiteDataAdapter SDA = new SQLiteDataAdapter(cmd);
-        //            SDA.Fill(DT);
-        //            DGAllEmp.ItemsSource = DT.DefaultView;
-
-        //        }
-        //        catch (Exception exp)
-        //        {
-        //            MessageBox.Show(exp.Message);
-        //        }
-
-
-        //    }
-        //}
         public void Delete()
         {
             using (SQLiteConnection connection = new SQLiteConnection(DBConnection.myConn))
@@ -170,19 +110,9 @@ namespace YchetPer
                 }
             }
         }
-
-        //private void Init()
-        //{
-        //    Ganre[] ganrelist1 = m_pDoc.GetGanreList("", 20);
-        //    CbGanr.ItemsSource = ganrelist1;
-        //    FilmNametxt.Text = SelectedFilm.film_name;
-        //    Cashtxt.Text = SelectedFilm.cash.ToString();
-        //    Scoretxt.Text = SelectedFilm.score.ToString();
-        //    CbGanr.SelectedItem = ganrelist1.Single(ganre => ganre.id_ganre == SelectedFilm.id_ganre);
-        //}
         private void BtnUpd_Click(object sender, RoutedEventArgs e)
         {
-            //UpdateDG();
+          
             DisplayData();
         }
 
@@ -190,7 +120,7 @@ namespace YchetPer
         {
             Delete();
             DisplayData();
-            //UpdateDG();
+         
         }
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -198,7 +128,7 @@ namespace YchetPer
             AddTec.Owner = this;
             AddTec.ShowDialog();
             DisplayData();
-            //UpdateDG();
+           
 
 
         }
@@ -219,8 +149,7 @@ namespace YchetPer
                     CbCondition.Text = row["Condition"].ToString();
                     StartWork.Text = row["StartWork"].ToString();
                     TbID.Text = row["ID"].ToString();
-                    //txtEmpId.IsEnabled = false;
-                    //btnAdd.Content = "Update";
+                  
                 }
                 else
                 {
@@ -310,17 +239,17 @@ namespace YchetPer
                     bool resultKab = int.TryParse(CbNumKab.SelectedValue.ToString(), out id2);
                     bool resultCon = int.TryParse(CbCondition.SelectedValue.ToString(), out id3);
                     bool resultTitl = int.TryParse(CbTitle.SelectedValue.ToString(), out id4);
-                    //var name = TbTitle.Text;
+                   
                     var numkab = TbNumber.Text;
                     var number = TbNumber.Text;
                     var idtype = CbClass.Text;
-                    //var idkab = CbNumKab.SelectedValuePath = " ";
+                   
                     var idcon = CbCondition.Text;
                     var startWork = StartWork.Text;
                     var ID = TbID.Text;
                     connection.Open();
 
-                    //string query = $@"UPDATE Devices SET (IDType, IDKabuneta, Title, Number, IDCondition, StartWork WHERE ID) values ('{id}',{id2},'{name}','{number}','{id3}','{startWork}','{Idi}');";
+                    
                     string query = $@"UPDATE Devices SET IDType=@IDType, IDKabuneta=@IDKabuneta, IDTitle=@IDTitle, Number=@Number, IDCondition=@IDCondition, StartWork=@StartWork WHERE ID=@ID;";
                     SQLiteCommand cmd = new SQLiteCommand(query, connection);
                     try
@@ -335,7 +264,7 @@ namespace YchetPer
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Данные изменены");
                         DisplayData();
-                        //UpdateDG();
+                       
 
                     }
 
@@ -385,25 +314,6 @@ namespace YchetPer
                 s += symb[rnd.Next(0, symb.Length)];
             return s;
         }
-       
-        private void BtnMail_Click(object sender, RoutedEventArgs e)
-        {
-            //try
-            //{
-                
-                SmtpClient Smtp = new SmtpClient("smtp.mail.ru");
-                Smtp.UseDefaultCredentials = true;
-                Smtp.EnableSsl = true;
-                Smtp.Credentials = new NetworkCredential("yarik.test@mail.ru", "UkRjn459Xwf2MNXDS6Zm");
-                MailMessage Message = new MailMessage();
-                Message.From = new MailAddress("yarik.test@mail.ru");
-                Message.To.Add(new MailAddress("yarik.test@mail.ru"));
-                Message.Subject = "Учёт компьютерной техники";
-                Message.Body = RndStr(5);
-                Smtp.Send(Message);
-            //}
-            //catch { }
-        }
-    }
+           }
 }
 

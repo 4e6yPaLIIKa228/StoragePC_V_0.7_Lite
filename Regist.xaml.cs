@@ -96,7 +96,6 @@ namespace YchetPer
                         try
                         {
                             TimeKod = RndStr(8);
-                            //MessageBox.Show("На вашу почту выслан код для проверки, введите его, чтобы продолжить", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                             SmtpClient Smtp = new SmtpClient("smtp.mail.ru");
                             Smtp.UseDefaultCredentials = true;
                             Smtp.EnableSsl = true;
@@ -123,9 +122,6 @@ namespace YchetPer
                         }
                         
                     }
-                //    MessageBox.Show("На вашу почту выслан код для проверки, введите его, чтобы продолжить", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                //    OffButton();
-                //VisibleElements(); 
                 }
             }
         }
@@ -161,7 +157,7 @@ namespace YchetPer
                     {
                         MessageBox.Show("Такой логин занят,выберите другой","Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                         TbLogin.IsReadOnly = false;
-                        //MessageBox.Show("Error: " + ex.Message);
+                       
                     }
                    
                 }
@@ -188,7 +184,6 @@ namespace YchetPer
         private void TbLogin_TextInput(object sender, TextCompositionEventArgs e)
         {
              //if (!Char.IsDigit(e.Text,47)) e.Handled = true;
-
         }
     }
 }

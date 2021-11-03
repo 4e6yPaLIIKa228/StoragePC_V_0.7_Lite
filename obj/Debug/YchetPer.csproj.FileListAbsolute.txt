@@ -114,7 +114,6 @@ C:\Users\студент.STD5\Desktop\Учет периферии\Павлов\St
 C:\Users\студент.STD5\Desktop\Учет периферии\Павлов\StoragePC_V_0.6_Lite-main\obj\Debug\YchetPer.csproj.CopyComplete
 C:\Users\студент.STD5\Desktop\Учет периферии\Павлов\StoragePC_V_0.6_Lite-main\obj\Debug\YchetPer.exe
 C:\Users\студент.STD5\Desktop\Учет периферии\Павлов\StoragePC_V_0.6_Lite-main\obj\Debug\YchetPer.pdb
-C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\DeviceACC3.db
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\YchetPer.exe.config
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\YchetPer.exe
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\YchetPer.pdb
@@ -146,7 +145,6 @@ C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\YchetPer
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\YchetPer.pdb
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\EdditTitle.g.cs
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\EdditTitle.baml
-C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\DeviceACC4.db
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\System.ValueTuple.dll
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\System.ValueTuple.xml
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\DeviceACC5.db
@@ -154,3 +152,41 @@ C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\Authoriz
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\Authoriz.baml
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\Regist.g.cs
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\Regist.baml
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\bin\Debug\DeviceACC5.db
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\bin\Debug\YchetPer.exe.config
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\bin\Debug\YchetPer.exe
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\bin\Debug\YchetPer.pdb
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\bin\Debug\System.Data.SQLite.dll
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\bin\Debug\System.ValueTuple.dll
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\bin\Debug\System.Data.SQLite.xml
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\bin\Debug\System.ValueTuple.xml
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\YchetPer.csprojAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\AddTechnic.g.cs
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\Authoriz.g.cs
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\Eddit.g.cs
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\EdditTitle.g.cs
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\MainWindow.g.cs
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\Regist.g.cs
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\App.g.cs
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\YchetPer_Content.g.cs
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\YchetPer_MarkupCompile.cache
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\YchetPer_MarkupCompile.lref
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\AddTechnic.baml
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\Authoriz.baml
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\Eddit.baml
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\EdditTitle.baml
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\MainWindow.baml
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\Regist.baml
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\YchetPer.g.resources
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\YchetPer.Properties.Resources.resources
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\YchetPer.csproj.GenerateResource.cache
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\YchetPer.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\YchetPer.csproj.CopyComplete
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\YchetPer.exe
+C:\Users\Administrator\Documents\GitHub\StoragePC_V_0.7_Lite\obj\Debug\YchetPer.pdb
