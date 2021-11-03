@@ -150,3 +150,7 @@ C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\DeviceAC
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\System.ValueTuple.dll
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\System.ValueTuple.xml
 C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\bin\Debug\DeviceACC5.db
+C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\Authoriz.g.cs
+C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\Authoriz.baml
+C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\Regist.g.cs
+C:\Users\Administrator\source\repos\StoragePC_V_0.6_Lite-main\obj\Debug\Regist.baml

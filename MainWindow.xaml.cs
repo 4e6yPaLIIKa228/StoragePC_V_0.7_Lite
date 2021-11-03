@@ -18,6 +18,8 @@ using System.Data;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.IO;
 using System.Drawing;
+using System.Net.Mail;
+using System.Net;
 
 namespace YchetPer
 {
@@ -372,6 +374,35 @@ namespace YchetPer
                     myRange.Value2 = b.Text;
                 }
             }
+        }
+
+        private static string RndStr(int len)//геннератор пароля(временного)
+        {
+            string s = "", symb = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+            Random rnd = new Random();
+
+            for (int i = 0; i < len; i++)
+                s += symb[rnd.Next(0, symb.Length)];
+            return s;
+        }
+       
+        private void BtnMail_Click(object sender, RoutedEventArgs e)
+        {
+            //try
+            //{
+                
+                SmtpClient Smtp = new SmtpClient("smtp.mail.ru");
+                Smtp.UseDefaultCredentials = true;
+                Smtp.EnableSsl = true;
+                Smtp.Credentials = new NetworkCredential("yarik.test@mail.ru", "UkRjn459Xwf2MNXDS6Zm");
+                MailMessage Message = new MailMessage();
+                Message.From = new MailAddress("yarik.test@mail.ru");
+                Message.To.Add(new MailAddress("yarik.test@mail.ru"));
+                Message.Subject = "Учёт компьютерной техники";
+                Message.Body = RndStr(5);
+                Smtp.Send(Message);
+            //}
+            //catch { }
         }
     }
 }

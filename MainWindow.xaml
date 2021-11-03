@@ -26,7 +26,7 @@
                 <DataGridTextColumn Header="Состояние" Binding="{Binding Condition}"/>
                 <DataGridTextColumn Header="Начало работы" Binding="{Binding StartWork}"/>
                 <DataGridTemplateColumn Header="Картинка">
-                    
+
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
@@ -60,6 +60,7 @@
         <Button x:Name="BtnExcel"  Grid.Row="1" Content="Экспорт в Excel" HorizontalAlignment="Left" Width="100"  Margin="337,22,0,16" Click="BtnExcel_Click" />
         <Label Content="Учёт компьютерной техники " HorizontalAlignment="Right" VerticalAlignment="Top" Width="864" Height="48" Grid.ColumnSpan="2" FontSize="35" FontFamily="ISOCPEUR" FontWeight="Bold" FontStyle="Italic"/>
         <Image x:Name="gggg" Grid.Column="1" HorizontalAlignment="Left" Height="44" Margin="157,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="109"/>
-   
+        <Button x:Name="BtnMail" Grid.Column="2"  Grid.Row="1" Content="Обновить" HorizontalAlignment="Left" Width="93" Margin="10,22,0,16" Click="BtnMail_Click"/>
+
     </Grid>
 </Window>
